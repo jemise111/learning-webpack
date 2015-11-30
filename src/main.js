@@ -1,3 +1,5 @@
-var alert = require('./alert');
+/** STYLE **/
+require('./main.scss');
 
-alert();
+/** JS **/
+require('./alert');
