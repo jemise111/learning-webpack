@@ -1,16 +1,16 @@
-require('./button.scss');
 var React = require('react');
+var Button;
 
 module.exports = React.createClass({
 
 	getInitialState: function() {
 		return {
+			buttonLoaded: false,
 			showButton: false
 		};
 	},
 
 	toggle: function() {
-		var a = 'hi';
 		this.setState({
 			showButton: !this.state.showButton
 		});
@@ -18,8 +18,15 @@ module.exports = React.createClass({
 
 	getComponent: function() {
 		if (this.state.showButton) {
-			var Button = require('./button');
-			return <Button />;	
+			if (this.state.buttonLoaded) {
+				return <Button />;
+			} else {
+				require.ensure([], function() {
+					require('./button.scss');
+					Button = require('./button');
+					this.setState({buttonLoaded: true});
+				}.bind(this));
+			}
 		} else {
 			return <h2>Hello My React World</h2>;
 		}
