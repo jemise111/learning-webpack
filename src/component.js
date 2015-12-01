@@ -10,7 +10,6 @@ module.exports = React.createClass({
 	},
 
 	toggle: function() {
-		var a = 'hi';
 		this.setState({
 			showButton: !this.state.showButton
 		});
