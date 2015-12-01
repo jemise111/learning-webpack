@@ -22,7 +22,6 @@ module.exports = React.createClass({
 				return <Button />;
 			} else {
 				require.ensure([], function() {
-					require('./button.scss');
 					Button = require('./button');
 					this.setState({buttonLoaded: true});
 				}.bind(this));
